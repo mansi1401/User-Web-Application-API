@@ -1,45 +1,51 @@
-﻿- Application/
-
+- Application/
     - Commands/
+        - CreateUser/
             - CreateUserCommand.cs
+        - UpdateUser/
             - UpdateUserCommand.cs
+        - DeleteUser/
             - DeleteUserCommand.cs
-            
-    - Queries/ 
+			
+    - Queries/
+        - GetUserById/
             - GetUserByIdQuery.cs
-            - GetUserByEmailQuery.cs
+		- GetUserByEmail/
+			GetUserByEmailQuery.cs
+        - GetAllUsers/
             - GetAllUsersQuery.cs
-
+			
     - CommandHandlers/
         - CreateUserCommandHandler.cs
         - UpdateUserCommandHandler.cs
         - DeleteUserCommandHandler.cs
-       
+		
     - QueryHandlers/
-        - GetUserQueryHandler.cs
+        - GetUserByIdQueryHandler.cs
+		- GetUserByEmailHandler.cs
         - GetAllUsersQueryHandler.cs
 
 - Domain/
     - Models/
         - User.cs
-    - Exceptions/
-        - DomainExceptions.cs
 
+- Exceptions/
+	
 
 - Infrastructure/
     - Data/
         - DbContext.cs          // The DbContext implementation
-
-- Business/
-    - UserDataAccess/
-        - UserDataAccess
-    - Interfaces
-        - IUserDataAccess
+		
+		
+- Business
+	- UserDataAccess.cs		
+	- Interfaces/
+		- IUserDataAccess.cs
 
 - WebAPI/
     - Controllers/
         - UserController.cs
-        - LoginController.cs
+		- LoginController.cs
 
 
 # Dependencies
@@ -64,7 +70,7 @@ app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 # Connection String
 ```
 "ConnectionStrings": {
-    "DefaultConnection": "Server=DUMBLEDORE;Database=ASHISHS_Local;Trusted_Connection=True"
+    "DefaultConnection": "Server=MAAN;Database=MANSI_Local;Trusted_Connection=True"
 }
 ```
 
@@ -78,7 +84,7 @@ public DbContext(IConfiguration configuration)
     _connectionString = configuration.GetConnectionString("DefaultConnection");
 }
 
-private IDbConnection CreateConnection()
+public IDbConnection CreateConnection()
 {
     return new SqlConnection(_connectionString);
 }
